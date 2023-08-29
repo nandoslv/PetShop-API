@@ -4,7 +4,7 @@ PetShop-API é uma API de teste desenvolvida em Node, utilizando as libs Express
 # Instalação
 npm install
 
-#Stack
+# Stack
 - NodeJs
 - Express
 - Winston
