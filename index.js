@@ -3,6 +3,7 @@ import cors from "cors";
 import winston from "winston";
 import animalRoute from "./routes/animal.route.js";
 import proprietarioRoute from "./routes/proprietario.route.js";
+import servicoRoute from "./routes/servico.route.js";
 
 
 const { combine, timestamp, label, printf } = winston.format;
@@ -32,6 +33,7 @@ app.use(cors());
 //ROUTES
 app.use('/animal', animalRoute);
 app.use('/proprietario', proprietarioRoute);
+app.use('/servico', servicoRoute);
 
 app.use((err, req, res, next) => {
     global.logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);    
