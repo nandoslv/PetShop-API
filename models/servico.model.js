@@ -15,7 +15,7 @@ const Servico = db.define('servicos', {
         allowNull: false
     }, 
     valor:{
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
         allowNull: false
     } 
 }, {underscored: true});

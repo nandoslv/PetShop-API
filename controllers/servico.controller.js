@@ -17,7 +17,7 @@ async function createServico(req, res, next){
 }
 
 async function getServicos(req, res, next){
-    try {        
+    try {                
         const proprietarioId = req.query.proprietarioId? req.query.proprietarioId: 0;
         res.send(await ServicoService.getServicos(proprietarioId));
         logger.info(`GET /servico`);

@@ -4,7 +4,7 @@ async function createServico(servico){
     return await ServicoRepository.insertServico(servico);
 }
 
-async function getServicos(proprietarioId){
+async function getServicos(proprietarioId){    
     return await ServicoRepository.getServicos(proprietarioId);
 }
 

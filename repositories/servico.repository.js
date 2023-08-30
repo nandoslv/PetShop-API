@@ -1,4 +1,5 @@
 import Servico from "../models/servico.model.js";
+import Animal from "../models/animal.model.js";
 
 async function insertServico(servico) {
     try {
@@ -10,15 +11,18 @@ async function insertServico(servico) {
 
 async function getServicos(proprietarioId=0) {
     try {
+        console.log("Servico.Service ")
         if(proprietarioId){                        
-            return await servico.findAll({
-                where: {
-                    proprietarioId
-                }
+            return await Servico.findAll({
+                include:[{
+                    model: Animal,
+                    where:{
+                        proprietarioId: proprietarioId
+                    }
+                }],
             });
-        }        
-        console.log(proprietarioId)
-        return await servico.findAll();
+        }                
+        return await Servico.findAll();
         
     } catch (error) {
         throw error;

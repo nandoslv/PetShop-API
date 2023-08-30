@@ -17,7 +17,6 @@ async function getAnimals(proprietarioId=0) {
                 }
             });
         }        
-        console.log(proprietarioId)
         return await Animal.findAll();
         
     } catch (error) {
