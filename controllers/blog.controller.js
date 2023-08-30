@@ -9,7 +9,7 @@ async function createPost(req, res, next){
         
         const result = await BlogService.createPost(post);
         res.send(result);
-        logger.info(`POST /Blog - ${JSON.stringify(post)}`);
+        logger.info(`POST /blog/post - ${JSON.stringify(post)}`);
 
     } catch (error) {
         next(error)
@@ -25,7 +25,7 @@ async function updatePost(req, res, next){
         
         const result = await BlogService.updatePost(post);
         res.send(result);
-        logger.info(`PUT /Blog - ${JSON.stringify(post)}`);
+        logger.info(`PUT /blog/post - ${JSON.stringify(post)}`);
         
     } catch (error) {
         next(error)
@@ -35,8 +35,28 @@ async function updatePost(req, res, next){
 async function getPosts(req, res, next){
     try {                
         res.send(await BlogService.getPosts());
-        logger.info(`GET /posts`);
+        logger.info(`GET /blog/posts`);
         
+    } catch (error) {
+        next(error)
+    }
+}
+
+async function getPost(req, res, next){
+    try {                
+        res.send(await BlogService.getPost(req.params.id));
+        logger.info(`GET /blog/post:id`);
+        
+    } catch (error) {
+        next(error)
+    }
+}
+
+async function createComentario(req, res, next){
+    try {
+        const comentario = req.body;
+        res.send(await BlogService.createComentario(req.params.id, comentario))
+        logger.info(`GET /blog/post/comentario`);
     } catch (error) {
         next(error)
     }
@@ -46,5 +66,7 @@ async function getPosts(req, res, next){
 export default {
     createPost,
     updatePost,
-    getPosts
+    getPosts,
+    getPost,
+    createComentario
 }

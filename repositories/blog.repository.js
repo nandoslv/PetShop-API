@@ -41,8 +41,45 @@ async function getPosts() {
     }
 }
 
+async function getPost(postId) {
+    const client = getClient();    
+    try {
+        await client.connect();
+        return await client.db("pet-shop")
+        .collection("posts")
+        .findOne({ "_id": new ObjectId(postId)});
+    } catch (err) {
+        throw err;
+    } finally {
+        await client.close();
+    }
+}
+
+async function createComentario(postId, comentario){
+    const client = getClient();
+    try {
+        await client.connect();
+        let post = await getPost(postId);        
+
+        if(post){
+            post.comentarios.push(comentario);
+            await client.db("pet-shop").collection("posts").updateOne(            
+                { "_id": new ObjectId(post._id)},            
+                { $set: { comentarios: post.comentarios } }
+            );            
+        }
+    } catch (err) {
+        throw err;
+    } finally {
+        await client.close();
+    }
+
+}
+
 export default {
     createPost,
     updatePost,
-    getPosts
+    getPosts,
+    getPost,
+    createComentario
 }

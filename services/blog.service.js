@@ -8,13 +8,22 @@ async function updatePost(post){
     return await BlogRepository.updatePost(post);
 }
 
-async function getPosts(){ 
-    console.log('service blog')
+async function getPosts(){     
     return await BlogRepository.getPosts();
+}
+
+async function getPost(postId){     
+    return await BlogRepository.getPost(postId);
+}
+
+async function createComentario(postId, comentario){
+    return await BlogRepository.createComentario(postId, comentario);
 }
 
 export default {
     createPost,
     updatePost,
-    getPosts
+    getPosts,
+    getPost,
+    createComentario
 }
