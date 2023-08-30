@@ -8,13 +8,23 @@ async function insertServico(servico) {
     }    
 }
 
-async function getServicos() {
+async function getServicos(proprietarioId=0) {
     try {
-        return await Servico.findAll();
+        if(proprietarioId){                        
+            return await servico.findAll({
+                where: {
+                    proprietarioId
+                }
+            });
+        }        
+        console.log(proprietarioId)
+        return await servico.findAll();
+        
     } catch (error) {
         throw error;
     }
 }
+
 
 async function getServico(id) {
     try {
