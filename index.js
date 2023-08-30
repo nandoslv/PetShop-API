@@ -4,6 +4,7 @@ import winston from "winston";
 import animalRoute from "./routes/animal.route.js";
 import proprietarioRoute from "./routes/proprietario.route.js";
 import servicoRoute from "./routes/servico.route.js";
+import blogRoute from "./routes/blog.route.js";
 
 
 const { combine, timestamp, label, printf } = winston.format;
@@ -34,6 +35,7 @@ app.use(cors());
 app.use('/animal', animalRoute);
 app.use('/proprietario', proprietarioRoute);
 app.use('/servico', servicoRoute);
+app.use('/blog', blogRoute);
 
 app.use((err, req, res, next) => {
     global.logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);    
